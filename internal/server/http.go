@@ -1,10 +1,10 @@
 package server
 
 import (
-	"haddibanga/internal/config"
-	"haddibanga/internal/domain/mango"
-	"haddibanga/internal/domain/order"
-	"haddibanga/internal/domain/user"
+	"spotsync/internal/config"
+	"spotsync/internal/domain/mango"
+	"spotsync/internal/domain/order"
+	"spotsync/internal/domain/user"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v5"

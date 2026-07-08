@@ -1,10 +1,10 @@
 package order
 
 import (
-	"haddibanga/internal/auth"
-	"haddibanga/internal/config"
-	"haddibanga/internal/domain/mango"
-	"haddibanga/internal/middlewares"
+	"spotsync/internal/auth"
+	"spotsync/internal/config"
+	"spotsync/internal/domain/mango"
+	"spotsync/internal/middlewares"
 
 	"github.com/labstack/echo/v5"
 	"gorm.io/gorm"

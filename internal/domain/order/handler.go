@@ -2,10 +2,10 @@ package order
 
 import (
 	"errors"
-	"haddibanga/internal/domain/mango"
-	"haddibanga/internal/domain/order/dto"
-	"haddibanga/internal/httpresponse"
 	"net/http"
+	"spotsync/internal/domain/mango"
+	"spotsync/internal/domain/order/dto"
+	"spotsync/internal/httpresponse"
 
 	"github.com/labstack/echo/v5"
 )

@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"haddibanga/internal/auth"
 	"net/http"
+	"spotsync/internal/auth"
 	"strings"
 
 	"github.com/labstack/echo/v5"

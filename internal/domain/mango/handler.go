@@ -2,9 +2,9 @@ package mango
 
 import (
 	"errors"
-	"haddibanga/internal/domain/mango/dto"
-	"haddibanga/internal/httpresponse"
 	"net/http"
+	"spotsync/internal/domain/mango/dto"
+	"spotsync/internal/httpresponse"
 	"strconv"
 
 	"github.com/labstack/echo/v5"

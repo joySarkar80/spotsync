@@ -1,6 +1,6 @@
 package mango
 
-import "haddibanga/internal/domain/mango/dto"
+import "spotsync/internal/domain/mango/dto"
 
 type service struct {
 	repo Repository

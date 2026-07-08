@@ -1,4 +1,4 @@
-# haddiBangaAmm — Mango Shop REST API
+# spotsyncAmm — Mango Shop REST API
 
 A Go REST API for a mango shop. Supports user auth (JWT), mango inventory management, and order placement. Uses Echo v5, GORM, and PostgreSQL (Neon).
 
@@ -93,14 +93,14 @@ If cloning an existing repo:
 
 ```bash
 git clone <repo-url>
-cd haddiBanga
+cd spotsync
 ```
 
 If starting from scratch:
 
 ```bash
-mkdir haddiBanga
-cd haddiBanga
+mkdir spotsync
+cd spotsync
 ```
 
 ---
@@ -108,10 +108,10 @@ cd haddiBanga
 ## Step 4 — Initialize Go Module
 
 ```bash
-go mod init haddibanga
+go mod init spotsync
 ```
 
-This creates `go.mod`. The module name `haddibanga` is used as the import prefix across all internal packages (e.g. `haddibanga/internal/config`).
+This creates `go.mod`. The module name `spotsync` is used as the import prefix across all internal packages (e.g. `spotsync/internal/config`).
 
 ---
 
@@ -287,7 +287,7 @@ curl http://localhost:8080/health
 ## Project Structure
 
 ```
-haddiBanga/
+spotsync/
 ├── cmd/
 │   └── main.go                  # Entry point
 ├── internal/

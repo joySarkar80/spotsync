@@ -1,7 +1,7 @@
 package mango
 
 import (
-	"haddibanga/internal/domain/mango/dto"
+	"spotsync/internal/domain/mango/dto"
 
 	"gorm.io/gorm"
 )

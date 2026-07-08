@@ -2,17 +2,17 @@ package order
 
 import (
 	"errors"
-	"haddibanga/internal/domain/mango"
+	"spotsync/internal/domain/mango"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
 var (
-	ErrOrderNotFound        = errors.New("order not found")
-	ErrNotEnoughStock       = errors.New("not enough stock available")
+	ErrOrderNotFound         = errors.New("order not found")
+	ErrNotEnoughStock        = errors.New("not enough stock available")
 	ErrOrderAlreadyCancelled = errors.New("order already cancelled")
-	ErrForbiddenOrderAccess = errors.New("you do not own this order")
+	ErrForbiddenOrderAccess  = errors.New("you do not own this order")
 )
 
 type Repository interface {

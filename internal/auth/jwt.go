@@ -49,7 +49,7 @@ func (js *jwtService) generateToken(userId uint, email, name, tokenType string, 
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(duration)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
-			Issuer:    "haddibanga",
+			Issuer:    "spotsync",
 		},
 	}
 

@@ -73,7 +73,7 @@ Everything else is wired inside `server.Start`.
 
 **What:** A special Go directory name. Code inside `internal/` **cannot be imported by any outside project**.
 
-**Why:** Enforces encapsulation. If this project were a library, consumers couldn't accidentally use our internal plumbing. Only code inside `haddibanga/` can import `haddibanga/internal/...`.
+**Why:** Enforces encapsulation. If this project were a library, consumers couldn't accidentally use our internal plumbing. Only code inside `spotsync/` can import `spotsync/internal/...`.
 
 ```
 internal/
@@ -95,12 +95,12 @@ internal/
 **What:** The module definition file. Like `package.json` in Node.js.
 
 **Why:** Tells Go:
-- What this module is called (`module haddibanga`)
+- What this module is called (`module spotsync`)
 - Which Go version to use (`go 1.25.0`)
 - What external packages are needed (`require` block)
 
 ```go
-module haddibanga      ← this is the import prefix for all internal packages
+module spotsync      ← this is the import prefix for all internal packages
 
 go 1.25.0
 

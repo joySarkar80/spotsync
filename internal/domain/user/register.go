@@ -1,9 +1,9 @@
 package user
 
 import (
-	"haddibanga/internal/auth"
-	"haddibanga/internal/config"
-	"haddibanga/internal/middlewares"
+	"spotsync/internal/auth"
+	"spotsync/internal/config"
+	"spotsync/internal/middlewares"
 
 	"github.com/labstack/echo/v5"
 	"gorm.io/gorm"

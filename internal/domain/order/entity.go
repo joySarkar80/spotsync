@@ -1,7 +1,7 @@
 package order
 
 import (
-	"haddibanga/internal/domain/order/dto"
+	"spotsync/internal/domain/order/dto"
 
 	"gorm.io/gorm"
 )

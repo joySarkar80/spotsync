@@ -1,8 +1,8 @@
 package order
 
 import (
-	"haddibanga/internal/domain/mango"
-	"haddibanga/internal/domain/order/dto"
+	"spotsync/internal/domain/mango"
+	"spotsync/internal/domain/order/dto"
 
 	"github.com/google/uuid"
 )

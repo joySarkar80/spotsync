@@ -2,9 +2,9 @@ package user
 
 import (
 	"errors"
-	"haddibanga/internal/domain/user/dto"
-	"haddibanga/internal/httpresponse"
 	"net/http"
+	"spotsync/internal/domain/user/dto"
+	"spotsync/internal/httpresponse"
 
 	"github.com/labstack/echo/v5"
 )

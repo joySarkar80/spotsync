@@ -1,8 +1,8 @@
 package main
 
 import (
-	"haddibanga/internal/config"
-	"haddibanga/internal/server"
+	"spotsync/internal/config"
+	"spotsync/internal/server"
 )
 
 func main() {

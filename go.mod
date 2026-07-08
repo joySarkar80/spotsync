@@ -1,4 +1,4 @@
-module haddibanga
+module spotsync
 
 go 1.25.0
 
