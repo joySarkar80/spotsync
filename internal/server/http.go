@@ -33,6 +33,7 @@ func Start(db *gorm.DB, cfg *config.Config) {
 
 	user.RegisterRoutes(e, db, cfg)
 	zone.RegisterRoutes(e, db, cfg)
+	reservation.RegisterRoutes(e, db, cfg)
 
 	e.Start(":" + cfg.Port)
 }
