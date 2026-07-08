@@ -18,9 +18,15 @@ func NewService(repo Repository, jwtService auth.JWTService) *service {
 }
 
 func (s *service) CreateUser(req dto.CreateRequest) (*dto.Response, error) {
+	role := req.Role
+	if role == "" {
+		role = "driver"
+	}
+
 	user := User{
 		Name:  req.Name,
 		Email: req.Email,
+		Role:  role,
 	}
 
 	if err := user.hashPassword(req.Password); err != nil {
@@ -35,6 +41,7 @@ func (s *service) CreateUser(req dto.CreateRequest) (*dto.Response, error) {
 		ID:        user.ID,
 		Name:      user.Name,
 		Email:     user.Email,
+		Role:      user.Role,
 		CreatedAt: user.CreatedAt.String(),
 	}, nil
 }
@@ -52,12 +59,12 @@ func (s *service) LoginUser(req dto.LoginRequest) (*dto.Response, error) {
 		return nil, ErrInvalidCredentials
 	}
 
-	accessToken, err := s.jwtService.GenerateAccessToken(user.ID, user.Email, user.Name)
+	accessToken, err := s.jwtService.GenerateAccessToken(user.ID, user.Email, user.Name, user.Role)
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate access token: %w", err)
 	}
 
-	refreshToken, err := s.jwtService.GenerateRefreshToken(user.ID, user.Email, user.Name)
+	refreshToken, err := s.jwtService.GenerateRefreshToken(user.ID, user.Email, user.Name, user.Role)
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate refresh token: %w", err)
 	}
@@ -66,6 +73,7 @@ func (s *service) LoginUser(req dto.LoginRequest) (*dto.Response, error) {
 		ID:           user.ID,
 		Name:         user.Name,
 		Email:        user.Email,
+		Role:         user.Role,
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,
 		CreatedAt:    user.CreatedAt.String(),
@@ -82,7 +90,7 @@ func (s *service) RefreshToken(refreshToken string) (*dto.Response, error) {
 		return nil, ErrInvalidCredentials
 	}
 
-	accessToken, err := s.jwtService.GenerateAccessToken(claims.UserID, claims.Email, claims.Name)
+	accessToken, err := s.jwtService.GenerateAccessToken(claims.UserID, claims.Email, claims.Name, claims.Role)
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate access token: %w", err)
 	}

@@ -10,6 +10,7 @@ type User struct {
 	Name     string `json:"name"  gorm:"type:varchar(100);not null"`
 	Email    string `json:"email"  gorm:"type:varchar(255);uniqueIndex;not null"`
 	Password string `json:"password"  gorm:"type:varchar(255);not null"`
+	Role     string `json:"role"  gorm:"type:varchar(20);not null;default:'driver'"`
 }
 
 func (u *User) hashPassword(password string) error {

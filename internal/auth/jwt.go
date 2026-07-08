@@ -19,13 +19,14 @@ type JWTClaims struct {
 	UserID    uint   `json:"user_id"`
 	Name      string `json:"name"`
 	Email     string `json:"email"`
+	Role      string `json:"role"`
 	TokenType string `json:"token_type"`
 	jwt.RegisteredClaims
 }
 
 type JWTService interface {
-	GenerateAccessToken(userId uint, email, name string) (string, error)
-	GenerateRefreshToken(userId uint, email, name string) (string, error)
+	GenerateAccessToken(userId uint, email, name, role string) (string, error)
+	GenerateRefreshToken(userId uint, email, name, role string) (string, error)
 	ValidateToken(tokenStr string) (*JWTClaims, error)
 }
 
@@ -40,11 +41,12 @@ func NewJWTService(secretKey string) JWTService {
 	return &jwtService{secretKey: secretKey}
 }
 
-func (js *jwtService) generateToken(userId uint, email, name, tokenType string, duration time.Duration) (string, error) {
+func (js *jwtService) generateToken(userId uint, email, name, role, tokenType string, duration time.Duration) (string, error) {
 	claims := JWTClaims{
 		UserID:    userId,
 		Name:      name,
 		Email:     email,
+		Role:      role,
 		TokenType: tokenType,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(duration)),
@@ -57,12 +59,12 @@ func (js *jwtService) generateToken(userId uint, email, name, tokenType string, 
 	return token.SignedString([]byte(js.secretKey))
 }
 
-func (js *jwtService) GenerateAccessToken(userId uint, email, name string) (string, error) {
-	return js.generateToken(userId, email, name, TokenTypeAccess, accessTokenDuration)
+func (js *jwtService) GenerateAccessToken(userId uint, email, name, role string) (string, error) {
+	return js.generateToken(userId, email, name, role, TokenTypeAccess, accessTokenDuration)
 }
 
-func (js *jwtService) GenerateRefreshToken(userId uint, email, name string) (string, error) {
-	return js.generateToken(userId, email, name, TokenTypeRefresh, refreshTokenDuration)
+func (js *jwtService) GenerateRefreshToken(userId uint, email, name, role string) (string, error) {
+	return js.generateToken(userId, email, name, role, TokenTypeRefresh, refreshTokenDuration)
 }
 
 func (js *jwtService) ValidateToken(tokenStr string) (*JWTClaims, error) {

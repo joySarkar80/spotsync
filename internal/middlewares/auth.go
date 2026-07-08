@@ -32,7 +32,6 @@ func AuthMiddleware(jwtService auth.JWTService) echo.MiddlewareFunc {
 				})
 			}
 
-			// reject refresh tokens from being used as access tokens
 			if claims.TokenType != auth.TokenTypeAccess {
 				return c.JSON(http.StatusUnauthorized, map[string]string{
 					"error": "invalid token type",
@@ -42,7 +41,24 @@ func AuthMiddleware(jwtService auth.JWTService) echo.MiddlewareFunc {
 			c.Set("user_id", claims.UserID)
 			c.Set("user_email", claims.Email)
 			c.Set("user_name", claims.Name)
+			c.Set("user_role", claims.Role)
 
+			return next(c)
+		}
+	}
+}
+
+// AdminOnly must be chained AFTER AuthMiddleware — it relies on "user_role"
+// already being set in the Echo context.
+func AdminOnly() echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c *echo.Context) error {
+			role, ok := c.Get("user_role").(string)
+			if !ok || role != "admin" {
+				return c.JSON(http.StatusForbidden, map[string]string{
+					"error": "admin access required",
+				})
+			}
 			return next(c)
 		}
 	}

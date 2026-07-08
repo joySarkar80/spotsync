@@ -2,8 +2,8 @@ package server
 
 import (
 	"spotsync/internal/config"
-	"spotsync/internal/domain/mango"
-	"spotsync/internal/domain/order"
+	// "spotsync/internal/domain/mango"
+	// "spotsync/internal/domain/order"
 	"spotsync/internal/domain/user"
 
 	"github.com/go-playground/validator/v10"
@@ -21,7 +21,8 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 }
 
 func Start(db *gorm.DB, cfg *config.Config) {
-	db.AutoMigrate(&user.User{}, &mango.Mango{}, &order.Order{})
+	// db.AutoMigrate(&user.User{}, &mango.Mango{}, &order.Order{})
+	db.AutoMigrate(&user.User{})
 
 	e := echo.New()
 	e.Validator = &CustomValidator{validator: validator.New()}
@@ -32,8 +33,8 @@ func Start(db *gorm.DB, cfg *config.Config) {
 	})
 
 	user.RegisterRoutes(e, db, cfg)
-	mango.RegisterRoutes(e, db, cfg)
-	order.RegisterRoutes(e, db, cfg)
+	// mango.RegisterRoutes(e, db, cfg)
+	// order.RegisterRoutes(e, db, cfg)
 
 	e.Start(":" + cfg.Port)
 }
